@@ -1883,7 +1883,7 @@ CREATE TABLE IF NOT EXISTS `#__users` (
 
 CREATE TABLE IF NOT EXISTS `#__user_keys` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(400) NOT NULL,
+  `user_id` varchar(150) NOT NULL,
   `token` varchar(255) NOT NULL,
   `series` varchar(191) NOT NULL,
   `invalid` tinyint(4) NOT NULL,
@@ -1893,7 +1893,7 @@ CREATE TABLE IF NOT EXISTS `#__user_keys` (
   UNIQUE KEY `series` (`series`),
   UNIQUE KEY `series_2` (`series`),
   UNIQUE KEY `series_3` (`series`),
-  KEY `user_id` (`user_id`(100))
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1954,14 +1954,19 @@ CREATE TABLE IF NOT EXISTS `#__user_usergroup_map` (
 --
 
 CREATE TABLE IF NOT EXISTS `#__utf8_conversion` (
-  `converted` tinyint(4) NOT NULL DEFAULT 0
+  `extension_id` int(11) NOT NULL DEFAULT 0,
+  `converted` tinyint(4) NOT NULL DEFAULT 0,
+  `md5_file1` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `md5_file2` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  PRIMARY KEY (`extension_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `#__utf8_conversion`
 --
 
-INSERT INTO `#__utf8_conversion` (`converted`) VALUES (0);
+INSERT INTO `#__utf8_conversion` (`extension_id`, `converted`, `md5_file1`, `md5_file2`) VALUES
+(700, 0, '', '');
 
 --
 -- Table structure for table `#__viewlevels`
