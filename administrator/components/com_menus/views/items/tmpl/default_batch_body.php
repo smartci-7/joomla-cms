@@ -18,12 +18,12 @@ $published = $this->state->get('filter.published');
 <div class="row-fluid">
 	<div class="control-group span6">
 		<div class="controls">
-			<?php echo JHtml::_('batch.language'); ?>
+			<?php echo JLayoutHelper::render('joomla.html.batch.language', array()); ?>
 		</div>
 	</div>
 	<div class="control-group span6">
 		<div class="controls">
-			<?php echo JHtml::_('batch.access'); ?>
+			<?php echo JLayoutHelper::render('joomla.html.batch.access', array()); ?>
 		</div>
 	</div>
 </div>

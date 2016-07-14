@@ -30,12 +30,12 @@ $extension = $this->escape($this->state->get('filter.extension'));
 		<div class="row-fluid">
 			<div class="control-group span6">
 				<div class="controls">
-					<?php echo JHtml::_('batch.language'); ?>
+					<?php echo JLayoutHelper::render('joomla.html.batch.language', array()); ?>
 				</div>
 			</div>
 			<div class="control-group span6">
 				<div class="controls">
-					<?php echo JHtml::_('batch.access'); ?>
+					<?php echo JLayoutHelper::render('joomla.html.batch.access', array()); ?>
 				</div>
 			</div>
 		</div>
@@ -60,7 +60,7 @@ $extension = $this->escape($this->state->get('filter.extension'));
 			<?php endif; ?>
 			<div class="control-group span6">
 				<div class="controls">
-					<?php echo JHtml::_('batch.tag'); ?>
+					<?php echo JLayoutHelper::render('joomla.html.batch.tag', array()); ?>
 				</div>
 			</div>
 		</div>

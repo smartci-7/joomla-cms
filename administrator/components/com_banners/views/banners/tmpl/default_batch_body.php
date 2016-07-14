@@ -15,7 +15,7 @@ $published = $this->state->get('filter.published');
 <div class="row-fluid">
 	<div class="control-group span6">
 		<div class="controls">
-			<?php echo JHtml::_('batch.language'); ?>
+			<?php echo JLayoutHelper::render('joomla.html.batch.language', array()); ?>
 		</div>
 	</div>
 	<div class="control-group span6">
@@ -28,7 +28,7 @@ $published = $this->state->get('filter.published');
 	<?php if ($published >= 0) : ?>
 		<div class="control-group span6">
 			<div class="controls">
-				<?php echo JHtml::_('batch.item', 'com_banners'); ?>
+				<?php echo JLayoutHelper::render('joomla.html.batch.item', $dispalyData = array('extension' => 'com_banners')); ?>
 			</div>
 		</div>
 	<?php endif; ?>

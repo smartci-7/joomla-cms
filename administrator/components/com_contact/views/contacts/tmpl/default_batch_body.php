@@ -13,12 +13,12 @@ $published = $this->state->get('filter.published');
 <div class="row-fluid">
 	<div class="control-group span6">
 		<div class="controls">
-			<?php echo JHtml::_('batch.language'); ?>
+			<?php echo JLayoutHelper::render('joomla.html.batch.language', array()); ?>
 		</div>
 	</div>
 	<div class="control-group span6">
 		<div class="controls">
-			<?php echo JHtml::_('batch.access'); ?>
+			<?php echo JLayoutHelper::render('joomla.html.batch.access', array()); ?>
 		</div>
 	</div>
 </div>
@@ -26,18 +26,18 @@ $published = $this->state->get('filter.published');
 	<?php if ($published >= 0) : ?>
 		<div class="control-group span6">
 			<div class="controls">
-				<?php echo JHtml::_('batch.item', 'com_contact'); ?>
+				<?php echo JLayoutHelper::render('joomla.html.batch.item', array('extension' => 'com_contact')); ?>
 			</div>
 		</div>
 	<?php endif; ?>
 	<div class="control-group span6">
 		<div class="controls">
-			<?php echo JHtml::_('batch.tag'); ?>
+			<?php echo JLayoutHelper::render('joomla.html.batch.tag', array()); ?>
 		</div>
 	</div>
 	<div class="control-group span6">
 		<div class="controls">
-			<?php echo JHtml::_('batch.user'); ?>
+			<?php echo JLayoutHelper::render('joomla.html.batch.tag', array()); ?>
 		</div>
 	</div>
 </div>
