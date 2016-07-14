@@ -64,7 +64,8 @@ class InstallerModelDatabase extends InstallerModel
 		$installer->deleteUnexistingFiles();
 		$this->fixDefaultTextFilters();
 
-		// Finally, make sure the database is converted to utf8mb4 if supported by the server
+		// Finally make sure the database is converted to utf8mb4 or, if not suported
+		// by the server, compatible to it
 		$this->convertTablesToUtf8mb4();
 	}
 
@@ -261,16 +262,10 @@ class InstallerModelDatabase extends InstallerModel
 	{
 		$db = JFactory::getDbo();
 
-		// If the database does not have UTF-8 Multibyte (utf8mb4) support we can't do much about it.
-		if (!$db->hasUTF8mb4Support())
-		{
-			return;
-		}
-
 		// Get the SQL file to convert the core tables. Yes, this is hardcoded because we have all sorts of index
 		// conversions and funky things we can't automate in core tables without an actual SQL file.
 		$serverType = $db->getServerType();
-		$fileName = JPATH_ADMINISTRATOR . "/components/com_admin/sql/updates/$serverType/3.5.0-2015-07-01.sql";
+		$fileName = JPATH_ADMINISTRATOR . "/components/com_admin/sql/others/$serverType/utf8mb4-conversion.sql";
 
 		if (!is_file($fileName))
 		{
@@ -289,12 +284,17 @@ class InstallerModelDatabase extends InstallerModel
 		{
 			try
 			{
-				$db->setQuery($query)->execute();
+				$db->setQuery($db->convertUtf8mb4QueryToUtf8($query))->execute();
 			}
 			catch (Exception $e)
 			{
 				// If the query fails we will go on. It probably means we've already done this conversion.
 			}
 		}
+
+		// Set flag that the update is done.
+		// ToDo: Maybe do a check in database if successful, or if there was an
+		// exception before, and set flag only if OK?
+		$db->setQuery('UPDATE `#__mysql_utf8mb4_test` SET `converted` = 1;')->execute();
 	}
 }
